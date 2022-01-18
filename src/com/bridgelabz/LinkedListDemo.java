@@ -78,6 +78,18 @@ class LinkedList {
         }
     }
 
+    //Method to Delete Last Node from Linked List
+    public void popLast() {
+        if(head == null) {
+            System.out.println("Linked List is Empty.");
+        } else {
+            Node second_Last = head;
+            while(second_Last.next.next != null)
+                second_Last = second_Last.next;
+                second_Last.next = null;
+        }
+    }
+
     //Display Node in Linked List
     public void showLinkedList() {
         if(head == null) {
@@ -131,7 +143,10 @@ public class LinkedListDemo {
                 case 5:
                     linkedList.pop();
                     break;
+                case 6:
+                    linkedList.popLast();
+                    break;
             }
-        }while(choice != 6);
+        }while(choice != 7);
     }
 }
