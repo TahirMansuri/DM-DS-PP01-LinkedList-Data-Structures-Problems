@@ -1,5 +1,7 @@
 package com.bridgelabz;
 
+import java.util.Scanner;
+
 class Node {
     public int data;
     public Node next;
@@ -12,6 +14,9 @@ class Node {
 }
 
 class LinkedList {
+
+    int location = 0;
+
     Node head;
     Node tail;
     //Insert Data in New Node
@@ -25,6 +30,8 @@ class LinkedList {
             newNode.next = head;
             head = newNode;
         }
+        location++;
+        System.out.println("Location:"+location);
     }
 
     //Insert Data from Last
@@ -36,6 +43,29 @@ class LinkedList {
         } else {
             tail.next = newNode;
             tail = newNode;
+        }
+        location++;
+        System.out.println("Location:"+location);
+    }
+
+    //Insert New Node after Given Node
+    public void insertNthPosition(int data,int nthdata) {
+        Node newNode = new Node(data);
+        if(head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            Node temp = head;
+            Node nextNode;
+            while (temp != null) {
+                nextNode = temp.next;
+                if(temp.data == nthdata) {
+                    temp.next = newNode;
+                    newNode.next = nextNode;
+                }
+//                System.out.print(temp.data + " -> ");
+                temp = temp.next;
+            }
         }
     }
 
@@ -58,18 +88,38 @@ public class LinkedListDemo {
         //Welcome Message
         System.out.println("Welcome to LinkedList Data Structures Problems developed by Tahir Mansuri.");
 
+        Scanner sc = new Scanner(System.in);
+
         LinkedList linkedList = new LinkedList();
 
-        //Insert 70, 50, 36 in Linked List Nodes
-//        linkedList.insertFirst(70);
-//        linkedList.insertFirst(30);
-//        linkedList.insertFirst(56);
+        int choice;
+        do {
+            System.out.println("SIMPLE LINKED LIST OPERATIONS");
+            System.out.println("1. INSERT FIRST \n2. INSERT LAST \n3. DISPLAY LIST \n4. INSERT AT Nth POSITION \n5. EXIT \nEnter the Choice for Operation : ");
+            choice = sc.nextInt();
 
-        linkedList.insertLast(70);
-        linkedList.insertLast(30);
-        linkedList.insertLast(56);
-
-        //Showing Linked List Data
-        linkedList.showLinkedList();
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter the Data to Insert at First : ");
+                    int dataFirst = sc.nextInt();
+                    linkedList.insertFirst(dataFirst);
+                    break;
+                case 2:
+                    System.out.println("Enter the Data to Insert at Last : ");
+                    int dataLast = sc.nextInt();
+                    linkedList.insertLast(dataLast);
+                    break;
+                case 3:
+                    linkedList.showLinkedList();
+                    break;
+                case 4:
+                    System.out.println("Enter the Data After which to Insert New Data : ");
+                    int nthData = sc.nextInt();
+                    System.out.println("Enter the Data : ");
+                    int data = sc.nextInt();
+                    linkedList.insertNthPosition(data,nthData);
+                    break;
+            }
+        }while(choice != 5);
     }
 }
