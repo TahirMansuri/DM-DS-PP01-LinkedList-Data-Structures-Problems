@@ -128,6 +128,42 @@ class LinkedList {
         }
     }
 
+    //Method to Get Size of Linked List
+    public int size() {
+        int count = 0;
+        if(head == null) {
+            return count;
+        } else {
+            Node temp = head;
+            while(temp != null) {
+                count ++;
+                temp = temp.next;
+            }
+        }
+        return count;
+    }
+
+    //Method to Delete Given Node from Linked List
+    public void deleteNode(int data) {
+        if(head == null) {
+            System.out.println("Linked List is Empty.");
+        } else {
+            if(data == head.data) {
+                head = head.next;
+            } else {
+                Node prevNode = head;
+                Node temp = head.next;
+                while(prevNode != null) {
+                    if(temp.data == data) {
+                        prevNode.next = temp.next;
+                    }
+                    prevNode = prevNode.next;
+                    temp = temp.next;
+                }
+            }
+        }
+    }
+
     //Display Node in Linked List
     public void showLinkedList() {
         if(head == null) {
@@ -154,7 +190,8 @@ public class LinkedListDemo {
         int choice;
         do {
             System.out.println("SIMPLE LINKED LIST OPERATIONS");
-            System.out.println("1. INSERT FIRST \n2. INSERT LAST \n3. DISPLAY LIST \n4. INSERT AT Nth POSITION \n5. POP \n6. POP LAST \n7. SEARCH NODE \n8. INSERT AFTER NODE \n9.EXIT \nEnter the Choice for Operation : ");
+            System.out.println("1. INSERT FIRST \n2. INSERT LAST \n3. DISPLAY LIST \n4. INSERT AT Nth POSITION \n5. POP \n6. POP LAST \n7. SEARCH NODE " +
+                    "\n8. INSERT AFTER NODE \n9. DELETE NODE \n10. EXIT \nEnter the Choice for Operation : ");
             choice = sc.nextInt();
 
             switch (choice) {
@@ -192,7 +229,12 @@ public class LinkedListDemo {
                     int nthData2 = sc.nextInt();
                     System.out.println("Enter the Data : ");
                     linkedList.insertAtLocation(sc.nextInt(),nthData2);
+                    break;
+                case 9:
+                    System.out.println("Enter the Node to Delete from Linked List : ");
+                    linkedList.deleteNode(sc.nextInt());
+                    break;
             }
-        }while(choice != 9);
+        }while(choice != 10);
     }
 }
