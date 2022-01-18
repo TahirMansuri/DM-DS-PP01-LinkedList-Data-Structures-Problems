@@ -69,6 +69,15 @@ class LinkedList {
         }
     }
 
+    //Method to Delete First Node from Linked List
+    public void pop() {
+        if(head == null) {
+            System.out.println("Linked List is Empty.");
+        } else {
+            head = head.next;
+        }
+    }
+
     //Display Node in Linked List
     public void showLinkedList() {
         if(head == null) {
@@ -95,7 +104,7 @@ public class LinkedListDemo {
         int choice;
         do {
             System.out.println("SIMPLE LINKED LIST OPERATIONS");
-            System.out.println("1. INSERT FIRST \n2. INSERT LAST \n3. DISPLAY LIST \n4. INSERT AT Nth POSITION \n5. EXIT \nEnter the Choice for Operation : ");
+            System.out.println("1. INSERT FIRST \n2. INSERT LAST \n3. DISPLAY LIST \n4. INSERT AT Nth POSITION \n5. POP \n6. POP LAST \n7. EXIT \nEnter the Choice for Operation : ");
             choice = sc.nextInt();
 
             switch (choice) {
@@ -119,7 +128,10 @@ public class LinkedListDemo {
                     int data = sc.nextInt();
                     linkedList.insertNthPosition(data,nthData);
                     break;
+                case 5:
+                    linkedList.pop();
+                    break;
             }
-        }while(choice != 5);
+        }while(choice != 6);
     }
 }
