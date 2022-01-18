@@ -90,6 +90,23 @@ class LinkedList {
         }
     }
 
+    //Method to Search given Node in Linked List
+    public void searchNode(int data) {
+        if(head == null) {
+            System.out.println("Linked List is Empty.");
+        } else {
+            int foundLocation = 1;
+            Node temp = head;
+            while(temp != null) {
+                if(temp.data == data) {
+                    System.out.println("Node found at Location : "+foundLocation);
+                }
+                foundLocation++;
+                temp = temp.next;
+            }
+        }
+    }
+
     //Display Node in Linked List
     public void showLinkedList() {
         if(head == null) {
@@ -116,7 +133,7 @@ public class LinkedListDemo {
         int choice;
         do {
             System.out.println("SIMPLE LINKED LIST OPERATIONS");
-            System.out.println("1. INSERT FIRST \n2. INSERT LAST \n3. DISPLAY LIST \n4. INSERT AT Nth POSITION \n5. POP \n6. POP LAST \n7. EXIT \nEnter the Choice for Operation : ");
+            System.out.println("1. INSERT FIRST \n2. INSERT LAST \n3. DISPLAY LIST \n4. INSERT AT Nth POSITION \n5. POP \n6. POP LAST \n7. SEARCH NODE \n8. EXIT \nEnter the Choice for Operation : ");
             choice = sc.nextInt();
 
             switch (choice) {
@@ -137,8 +154,7 @@ public class LinkedListDemo {
                     System.out.println("Enter the Data After which to Insert New Data : ");
                     int nthData = sc.nextInt();
                     System.out.println("Enter the Data : ");
-                    int data = sc.nextInt();
-                    linkedList.insertNthPosition(data,nthData);
+                    linkedList.insertNthPosition(sc.nextInt(),nthData);
                     break;
                 case 5:
                     linkedList.pop();
@@ -146,7 +162,11 @@ public class LinkedListDemo {
                 case 6:
                     linkedList.popLast();
                     break;
+                case 7:
+                    System.out.println("Enter the Data to Search within Linked List : ");
+                    linkedList.searchNode(sc.nextInt());
+                    break;
             }
-        }while(choice != 7);
+        }while(choice != 8);
     }
 }
